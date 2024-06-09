@@ -4,11 +4,11 @@ using UserManagementApi.Interface;
 
 namespace UserManagementApi.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly AppDbContext _context;
 
-        public Repository(AppDbContext context)
+        public GenericRepository(AppDbContext context)
         {
             _context = context;
         }
@@ -20,7 +20,9 @@ namespace UserManagementApi.Repositories
 
         public async Task<T> GetById(int id)
         {
-            return await _context.Set<T>().FindAsync(id);
+            var x = await _context.Set<T>().FindAsync(id);
+            if (x == null) { throw new InvalidOperationException("Ocorreu um erro ao realizar a consulta."); }
+            return x;
         }
 
         public async Task Add(T entity)

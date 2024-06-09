@@ -1,6 +1,6 @@
-﻿namespace UserManagementApi.Interface
+﻿namespace UserManagementApi.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IGenericService<T> where T : class
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> GetById(int id);
@@ -8,5 +8,4 @@
         Task Update(T entity);
         Task Delete(int id);
     }
-
 }

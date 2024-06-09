@@ -1,11 +1,8 @@
 ﻿namespace UserManagementApi.Models
 {
-    public class Grupo
+    public class Grupo : GenericModel
     {
-        public int IdGrupo { get; set; }
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = string.Empty;
         public bool Administrador { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime DataAlteracao { get; set; }
     }
 }

@@ -3,8 +3,7 @@ using UserManagementApi.Models;
 
 namespace UserManagementApi.Interfaces
 {
-    public interface IUsuarioRepository : IRepository<Usuario>
+    public interface IGruposRepository : IGenericRepository<Grupo>
     {
     }
-
 }

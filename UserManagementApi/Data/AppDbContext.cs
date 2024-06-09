@@ -6,7 +6,7 @@ namespace UserManagementApi.Data
     public class AppDbContext : DbContext
     {
         public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<Grupo> UsuarioGrupo { get; set; }
+        public DbSet<Grupo> Grupo { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -21,6 +21,32 @@ namespace UserManagementApi.Data
                 .HasForeignKey(u => u.IdGrupo);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public void InitializeAdminUser()
+        {
+            var adminGrupo = new Grupo
+            {
+                Descricao = "ADMINISTRADOR",
+                Administrador = true,
+                DataCadastro = DateTime.Now,
+                DataAlteracao = DateTime.Now
+            };
+
+            var adminUsuario = new Usuario
+            {
+                Nome = "ADMIN",
+                Senha = "ADMIN", // Lembre-se de criptografar a senha
+                CPF = "12345678900", // Ou outro CPF válido
+                Grupo = adminGrupo,
+                DataCadastro = DateTime.Now,
+                DataAlteracao = DateTime.Now
+            };
+
+            Grupo.Add(adminGrupo);
+            Usuario.Add(adminUsuario);
+
+            SaveChanges();
         }
     }
 }

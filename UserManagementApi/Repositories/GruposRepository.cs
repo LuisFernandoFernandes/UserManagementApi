@@ -4,8 +4,8 @@ using UserManagementApi.Models;
 
 namespace UserManagementApi.Repositories
 {
-    public class GrupoRepository : Repository<Grupo>, IGrupoRepository
+    public class GruposRepository : GenericRepository<Grupo>, IGruposRepository
     {
-        public GrupoRepository(AppDbContext context) : base(context) { }
+        public GruposRepository(AppDbContext context) : base(context) { }
     }
 }

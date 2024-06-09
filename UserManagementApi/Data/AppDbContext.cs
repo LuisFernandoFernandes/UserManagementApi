@@ -36,8 +36,8 @@ namespace UserManagementApi.Data
             var adminUsuario = new Usuario
             {
                 Nome = "ADMIN",
-                Senha = "ADMIN", // Lembre-se de criptografar a senha
-                CPF = "12345678900", // Ou outro CPF válido
+                Senha = "ADMIN",
+                CPF = "12345678900",
                 Grupo = adminGrupo,
                 DataCadastro = DateTime.Now,
                 DataAlteracao = DateTime.Now

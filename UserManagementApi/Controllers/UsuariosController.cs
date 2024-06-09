@@ -33,5 +33,40 @@ namespace UserManagementApi.Controllers
 
             return Ok(new { token });
         }
+
+        [Authorize(Policy = "ApenasAdministrador")]
+        [HttpPost("creatwithvalidation")]
+        public async Task<IActionResult> CreateUsuario([FromBody] Usuario usuario)
+        {
+            try
+            {
+                var createdUsuario = await _usuariosService.AddUsuarioAsync(usuario);
+                return CreatedAtAction(nameof(GetById), new { id = createdUsuario.Id }, createdUsuario);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        [Authorize(Policy = "ApenasAdministrador")]
+        [HttpPut("updatewithvalidation/{id}")]
+        public async Task<IActionResult> UpdateUsuario(int id, [FromBody] Usuario usuario)
+        {
+            if (id != usuario.Id)
+            {
+                return BadRequest(new { message = "ID do usuário inválido." });
+            }
+
+            try
+            {
+                var updatedUsuario = await _usuariosService.UpdateUsuarioAsync(usuario);
+                return Ok(updatedUsuario);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

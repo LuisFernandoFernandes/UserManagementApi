@@ -6,6 +6,8 @@ namespace UserManagementApi.Interfaces
     {
         Task<Usuario?> GetUserByUsername(string username);
         bool VerifyPassword(string password, string passwordHash);
-        string GenerateJwtToken(Usuario usuario);
+        Task<string> GenerateJwtToken(Usuario usuario);
+        Task<Usuario> AddUsuarioAsync(Usuario usuario);
+        Task<Usuario> UpdateUsuarioAsync(Usuario usuario);
     }
 }
